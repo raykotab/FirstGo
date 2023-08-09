@@ -1,1 +1,1 @@
-# A first Go programming; getting to know the language.
+# A first Go programming, getting to know the language.
