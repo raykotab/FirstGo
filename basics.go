@@ -1,28 +1,61 @@
-// ## Type conversion ##
+
 package main
 
 import (
 	"fmt"
 	"math/cmplx"
-	// "reflect"
-	// "strconv"
+	"reflect"
+	"strconv"
 	"math"
+	"time"
 )
 
 func main() {
-	// a := 3.14
-	// b := int(a)
-	// fmt.Println(b, reflect.TypeOf(b))
-
-	// c := "12.34"
-	// d, _ := strconv.ParseFloat(c, 64)
-	// fmt.Println(d, reflect.TypeOf(d))
-
-	// e := false
-	// f := fmt.Sprint(e)
-	// fmt.Println(f, reflect.TypeOf(f))
-
+	good()
+	printTypesOf()
+	kindOfZeroes()
+	printSwap()
+	printSplit()
+	printVariables()
+	printVarTypes()
+	printConst()
+	printIfs()
+	printLoop()
+	printDeference()
+	printThreeTimes()
+	printAnonFunc()
+	blanckIdentifier()
+	evenOnly(9)
+	loopea()
+	lopeaNoArgs()
 	fmt.Println(Sqrt(2))
+	fmt.Println(pow(2, 6, 5))
+	deference()
+	printPointersDemo()
+	vertex()
+	printFirstStructs()
+	printArray()
+	printSliceDemo()
+	printSliceAccessesArray()
+	sliceLiterals()
+
+	
+	// fmt.Println()
+}
+
+
+func printTypesOf() {
+	a := 3.14
+	b := int(a)
+	fmt.Println(b, reflect.TypeOf(b))
+
+	c := "12.34"
+	d, _ := strconv.ParseFloat(c, 64)
+	fmt.Println(d, reflect.TypeOf(d))
+
+	e := false
+	f := fmt.Sprint(e)
+	fmt.Println(f, reflect.TypeOf(f))
 }
 
 /*
@@ -38,7 +71,7 @@ string-int, int-string, bool-string, and string-bool.
 
 //## Zero Values ##
 
-func moine() {
+func kindOfZeroes() {
 	var a int
 	var b float64
 	var c bool
@@ -71,7 +104,7 @@ func swap(x, y string) (string, string) {
 	return y, x
 }
 
-func amain() {
+func printSwap() {
 	a, b := swap("hello", "world")
 	fmt.Println(a, b)
 }
@@ -89,7 +122,7 @@ func split(sum int) (x, y int) {
 	return
 }
 
-func namain() {
+func printSplit() {
 	fmt.Println(split(17))
 }
 
@@ -103,7 +136,7 @@ func namain() {
 
 // ## Short variable declarations ##
 
-func anemain() {
+func printVariables() {
 	var i, j int = 1, 2
 	k := 3
 	c, python, java := true, false, "no!"
@@ -129,7 +162,7 @@ var (
 	z      complex128 = cmplx.Sqrt(-5 + 12i)
 )
 
-func antemain() {
+func printVarTypes() {
 	fmt.Printf("Type: %T Value: %v\n", ToBe, ToBe)
 	fmt.Printf("Type: %T Value: %v\n", MaxInt, MaxInt)
 	fmt.Printf("Type: %T Value: %v\n", z, z)
@@ -167,7 +200,7 @@ func antemain() {
 
 const Pi = 3.14
 
-func anetemain() {
+func printConst() {
 	const World = "世界"
 	fmt.Println("Hello", World)
 	fmt.Println("Happy", Pi, "Day")
@@ -194,7 +227,7 @@ Constants cannot be declared using the := syntax.
 
 //## Conditions ##
 
-func moinet() {
+func printIfs() {
 	// if, else
 	a := 5
 	if a > 3 {
@@ -231,7 +264,7 @@ func moinet() {
   if, else, switch, case, but there is only one looping statement in Go which is “for”.
   Because you can replace “while” statement with “for” statement like the example */
 
-func moinete() {
+func printLoop() {
 	// for
 	c := 3
 	for i := 0; i < c; i++ {
@@ -266,7 +299,7 @@ which are index/key and value.*/
 
 // ## Defer ##
 
-func moineter() {
+func printDeference() {
 	f()
 }
 
@@ -305,7 +338,7 @@ func myFunc (a,b string, c int)(string, string, int) {
     Body: It is a logic of a function.
 */
 
-func moinetern() {
+func printThreeTimes() {
 	fmt.Println(threeTimes("Thank You"))
 }
 
@@ -326,7 +359,7 @@ func threeTimes(msg string) (tMsg string) {
 
 // ## Anonymous Functions ##
 
-func maineterne() {
+func printAnonFunc() {
 	a := 1
 	b := 1
 	c := func(x int) int {
@@ -386,7 +419,7 @@ func loopea() {
 	fmt.Println(sum)
 }
 
-func lopeaSinArgs() {
+func lopeaNoArgs() {
 	sum := 1
 	for sum < 1000 {
 		sum += sum
@@ -423,3 +456,234 @@ func Sqrt(x float64) (float64, int) {
 
 	return z, control
 }
+
+
+/* Switch without a condition is the same as switch true.
+
+This construct can be a clean way to write long if-then-else chains. */
+
+func good() {
+	t := time.Now()
+	switch {
+	case t.Hour() < 12:
+		fmt.Println("Good morning!")
+	case t.Hour() < 17:
+		fmt.Println("Good afternoon.")
+	default:
+		fmt.Println("Good evening.")
+	}
+}
+
+/*Deferred function calls are pushed onto a stack. When a function returns, its deferred calls are executed in last-in-first-out order. */
+
+func deference() {
+	defer fmt.Println("world")
+
+	fmt.Println("hello")
+}
+
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//POINTERS * POINTERS & POINTERS * POINTERS & POINTERS * POINTERS & POINTERS * POINTERS & POINTERS * POINTERS & POINT
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+func printPointersDemo() {
+	i, j := 42, 2701
+
+	p := &i         // point to i
+	fmt.Println(*p) // read i through the pointer
+	*p = 21         // set i through the pointer
+	fmt.Println(i)  // see the new value of i
+
+	p = &j         // point to j
+	*p = *p / 37   // divide j through the pointer
+	fmt.Println(j) // see the new value of j
+	fmt.Println(2701 / 37)
+}
+
+//*   output 
+//	42
+//	21
+//	73
+//	73
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//A struct is a collection of fields. A struct is a collection of fields. A struct is a collection of fields. A struct
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+type Vertex struct {
+	X int
+	Y int
+}
+
+func vertex() {
+	fmt.Println(Vertex{1, 2})
+}
+
+/*
+Struct fields are accessed using a dot. 
+v.X = 4
+
+Struct fields can be accessed through a struct pointer. 
+v := Vertex{1, 2}
+	p := &v
+	p.X = 1e9
+
+	output 
+	{1000000000 2}
+*/
+
+/*
+ A struct literal denotes a newly allocated struct value by listing the values of its fields.
+
+You can list just a subset of fields by using the Name: syntax. (And the order of named fields is irrelevant.) 
+
+*/
+
+type firstStruct struct {
+	X, Y int
+}
+
+var (
+	v1 = firstStruct{1, 2}  // has type Vertex
+	v2 = firstStruct{X: 1}  // Y:0 is implicit
+	v3 = firstStruct{}      // X:0 and Y:0
+	p  = &v1 // has type *Vertex
+)
+
+func printFirstStructs() {
+	fmt.Println(v1, p, v2, v3)
+}
+
+/*
+The type [n]T is an array of n values of type T. 
+An array's length is part of its type, so arrays cannot be resized. This seems limiting, but don't worry; Go provides a convenient way of working with arrays
+*/
+
+func printArray() {
+	var a [2]string
+	a[0] = "Hello"
+	a[1] = "World"
+	fmt.Println(a[0], a[1])
+	fmt.Println(a)
+
+	primes := [6]int{2, 3, 5, 7, 11, 13}
+	fmt.Println(primes)
+}
+
+/*
+	OUTPUT
+Hello World
+[Hello World]
+[2 3 5 7 11 13]
+*/
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// SLICE · SLICE · SLICE · SLICE · SLICE · SLICE · SLICE · SLICE · SLICE · SLICE · SLICE · SLICE · SLICE · SLICE · 
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+/*
+ An array has a fixed size. A slice, on the other hand, is a dynamically-sized, flexible view into the elements of an array. In practice, slices are much more common than arrays.
+
+The type []T is a slice with elements of type T.
+
+A slice is formed by specifying two indices, a low and high bound, separated by a colon:
+
+a[low : high]
+
+This selects a half-open range which includes the first element, but excludes the last one.
+
+The following expression creates a slice which includes elements 1 through 3 of a:
+
+a[1:4] = [3 5 7]
+
+*/
+
+func printSliceDemo() {
+	primes := [6]int{2, 3, 5, 7, 11, 13}
+
+	var s []int = primes[1:4]
+	fmt.Println(s)
+}
+
+/*
+
+ A slice does not store any data, it just describes a section of an underlying array.
+
+Changing the elements of a slice modifies the corresponding elements of its underlying array.
+
+Other slices that share the same underlying array will see those changes. 
+
+*/
+
+func printSliceAccessesArray() {
+	names := [4]string{
+		"John",
+		"Paul",
+		"George",
+		"Ringo",
+	}
+	fmt.Println(names)
+
+	a := names[0:2]
+	b := names[1:3]
+	fmt.Println(a, b)
+
+	a[0] = "yyy"
+	b[1] = "XXX"
+	fmt.Println(a, b)
+	fmt.Println(names)
+}
+
+/*
+	OUTPUT
+
+[John Paul George Ringo]
+[John Paul] [Paul George]
+[yyy Paul] [Paul XXX]
+[yyy Paul XXX Ringo]
+*/
+
+
+/*
+ A slice literal is like an array literal without the length.
+
+This is an array literal:
+
+[3]bool{true, true, false}
+
+And this creates the same array as above, then builds a slice that references it:
+
+[]bool{true, true, false}
+*/
+
+func sliceLiterals() {
+	q := []int{2, 3, 5, 7, 11, 13}
+	fmt.Println(q)
+
+	r := []bool{true, false, true, true, false, true}
+	fmt.Println(r)
+
+	s := []struct {
+		i int
+		b bool
+	}{
+		{2, true},
+		{3, false},
+		{5, true},
+		{7, true},
+		{11, false},
+		{13, true},
+	}
+	fmt.Println(s)
+}
+
+/*
+	OUTPUT
+[2 3 5 7 11 13]
+[true false true true false true]
+[{2 true} {3 false} {5 true} {7 true} {11 false} {13 true}]
+*/
